@@ -51,11 +51,11 @@ export function SideRail({ presence, deptScores, onOpenChallenge }: SideRailProp
           onClick={onOpenChallenge}
           className="relative mt-4 w-full rounded-xl bg-lime/15 py-2 text-xs font-bold text-lime ring-1 ring-lime/40 transition hover:bg-lime hover:text-void"
         >
-          スコアボードを見る · あと{challengeMeta.daysLeft}日
+          順位を見る · あと{challengeMeta.daysLeft}日
         </button>
         {leader && (
           <p className="relative mt-2 text-center text-[11px] text-faint">
-            現在首位 {leader.emoji} {leader.name}
+            いま1位 {leader.emoji} {leader.name}
           </p>
         )}
       </section>

@@ -25,7 +25,7 @@ export function Challenge({ scores, onCheer }: ChallengeProps) {
           {challengeMeta.title} · 締切 {challengeMeta.deadline} · あと{challengeMeta.daysLeft}日
         </p>
         <p className="mt-1 text-xs text-faint">
-          投稿 +10 / 試したチェーン +15 / 失敗ブース「あるある」は対象外（安全のため）
+          投稿 +10 / 「試した」+15 / 失敗ブースの「あるある」は点数に入りません
         </p>
       </header>
 
@@ -47,7 +47,7 @@ export function Challenge({ scores, onCheer }: ChallengeProps) {
                 <div className="font-display text-2xl font-extrabold" style={{ color: d.color }}>
                   {d.points.toLocaleString()}
                 </div>
-                <div className="text-[10px] font-bold uppercase tracking-wider text-faint">pts</div>
+                <div className="text-[10px] font-bold tracking-wider text-faint">点</div>
               </div>
             </div>
             <div className="mt-3 h-2 overflow-hidden rounded-full bg-line-soft">

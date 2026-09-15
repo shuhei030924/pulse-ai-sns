@@ -19,8 +19,8 @@ export function People() {
   return (
     <div className="fade-in space-y-5">
       <header>
-        <h1 className="font-display text-2xl font-extrabold text-ink">人 / ツール棚</h1>
-        <p className="mt-1 text-sm text-muted">ライセンス済みツールと「この人に聞ける」エキスパート。</p>
+        <h1 className="font-display text-2xl font-extrabold text-ink">人 / ツール</h1>
+        <p className="mt-1 text-sm text-muted">社内で使えるツールと、詳しい人の一覧です。</p>
       </header>
 
       <div className="flex gap-2">
@@ -31,7 +31,7 @@ export function People() {
             tab === 'tools' ? 'bg-cyan text-void' : 'bg-surface text-muted ring-1 ring-line'
           }`}
         >
-          社内ツール棚
+          社内ツール
         </button>
         <button
           type="button"

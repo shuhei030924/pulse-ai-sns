@@ -4,12 +4,12 @@ import type { FailBoothPost, Post, PostType } from '../types'
 import { CURRENT_USER_ID } from '../data/mock'
 
 const templates: { type: PostType | '失敗ブース'; title: string; hint: string }[] = [
-  { type: '学び', title: '学び', hint: '今日試してうまくいったコツを短く' },
-  { type: '事例', title: '事例', hint: '数字やビフォーアフターがあると強い' },
-  { type: '質問', title: '質問', hint: '困っていることと、すでに試したことを' },
+  { type: '学び', title: '学び', hint: 'うまくいったやり方を短く' },
+  { type: '事例', title: '事例', hint: '数字や、やる前と後があるとわかりやすい' },
+  { type: '質問', title: '質問', hint: '困ってることと、もう試したこと' },
   { type: '失敗', title: '失敗（公開）', hint: '何が起きて、次どうするかを実名で' },
-  { type: 'チャレンジ', title: 'チャレンジ', hint: '今週の課題への回答・参加表明' },
-  { type: '失敗ブース', title: '失敗ブース', hint: '匿名・タイムリミット。社内だけのお懺悔' },
+  { type: 'チャレンジ', title: 'チャレンジ', hint: '今週のお題への回答や、「やります」など' },
+  { type: '失敗ブース', title: '失敗ブース', hint: '匿名で、時間切れで消えます。個人情報は書かないで' },
 ]
 
 const tagSuggestions = ['プロンプト術', 'Cursor', 'ChatGPT', 'Claude', '業務活用', '失敗から学ぶ', '新人向け']
@@ -112,10 +112,10 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div>
             <h2 className="font-display text-lg font-extrabold text-ink">
-              {isBooth ? '失敗ブースに投稿' : '新規投稿'}
+              {isBooth ? '失敗ブースに書く' : '投稿を書く'}
             </h2>
             <p className="text-xs text-muted">
-              {isBooth ? '匿名・期限つき。社内の安全なお懺悔スペース' : 'テンプレを選んで、熱量を投下'}
+              {isBooth ? '匿名・期限つき。個人情報は書かないでください' : '種類を選んで書いてください'}
             </p>
           </div>
           <button type="button" onClick={onClose} className="rounded-xl p-2 text-muted hover:bg-line-soft">
@@ -125,7 +125,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
 
         <div className="max-h-[70vh] space-y-5 overflow-y-auto p-5 soft-scroll">
           <div>
-            <label className="mb-2 block text-xs font-bold text-muted">テンプレート</label>
+            <label className="mb-2 block text-xs font-bold text-muted">種類</label>
             <div className="flex flex-wrap gap-2">
               {templates.map((t) => (
                 <button
@@ -154,7 +154,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
               <input
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
-                placeholder="一言で刺さる見出し"
+                placeholder="何をしたか、一言で"
                 className="w-full rounded-xl border border-line bg-line-soft px-3 py-2.5 text-sm outline-none ring-lime/40 transition focus:ring-2"
                 required={!isBooth}
               />
@@ -163,12 +163,16 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
 
           <div>
             <label className="mb-1.5 block text-xs font-bold text-muted">
-              {isBooth ? '懺悔（匿名）' : '本文'}
+              {isBooth ? '本文（匿名）' : '本文'}
             </label>
             <textarea
               value={body}
               onChange={(e) => setBody(e.target.value)}
-              placeholder={isBooth ? '何が起きた？次どうする？個人情報は書かないでね' : '手順、プロンプト、結果や学びを…'}
+              placeholder={
+                isBooth
+                  ? '何が起きたか、次どうするか。個人情報は書かないでください'
+                  : '手順、プロンプト、結果などを'
+              }
               rows={5}
               className="w-full resize-none rounded-xl border border-line bg-line-soft px-3 py-2.5 text-sm outline-none ring-lime/40 transition focus:ring-2"
               required
@@ -198,11 +202,11 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
           {!isBooth && (
             <>
               <div>
-                <label className="mb-1.5 block text-xs font-bold text-muted">プロンプト断片（任意・試したチェーン用）</label>
+                <label className="mb-1.5 block text-xs font-bold text-muted">プロンプト（任意・他の人がコピーできます）</label>
                 <textarea
                   value={prompt}
                   onChange={(e) => setPrompt(e.target.value)}
-                  placeholder="コピーして試せる短いプロンプト"
+                  placeholder="他の人がコピーして試せる短いプロンプト"
                   rows={2}
                   className="w-full resize-none rounded-xl border border-line bg-line-soft px-3 py-2.5 font-mono text-xs outline-none focus:ring-2 focus:ring-cyan/40"
                 />
@@ -287,7 +291,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                 : 'bg-lime shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)] hover:brightness-110'
             }`}
           >
-            {isBooth ? '匿名で投下' : 'Pulseに投稿'}
+            {isBooth ? '匿名で投稿' : '投稿する'}
           </button>
         </div>
       </form>

@@ -12,10 +12,10 @@ export function StoriesRail({ stories, onOpen }: StoriesRailProps) {
     <section className="fade-in">
       <div className="mb-2 flex items-baseline justify-between px-1">
         <h2 className="font-display text-sm font-bold tracking-wide text-ink">
-          24h Tips
+          今日のTips
         </h2>
-        <span className="text-[10px] font-semibold uppercase tracking-widest text-cyan">
-          ephemeral
+        <span className="text-[10px] font-semibold tracking-widest text-cyan">
+          24時間で消えます
         </span>
       </div>
       <div className="hide-scrollbar flex gap-3 overflow-x-auto pb-2">

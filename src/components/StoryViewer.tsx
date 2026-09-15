@@ -58,7 +58,7 @@ export function StoryViewer({ stories, index, onClose, onViewed, onIndex }: Stor
           <Avatar initials={author.initials} color={author.color} size="sm" />
           <div className="min-w-0 flex-1">
             <div className="text-sm font-bold text-white">{author.name}</div>
-            <div className="text-[11px] text-white/60">あと {story.hoursLeft}h · 24h Tips</div>
+            <div className="text-[11px] text-white/60">あと {story.hoursLeft}時間で消えます</div>
           </div>
           <button
             type="button"
@@ -70,8 +70,8 @@ export function StoryViewer({ stories, index, onClose, onViewed, onIndex }: Stor
         </div>
 
         <div className="flex flex-1 flex-col justify-center px-6 pb-10">
-          <p className="text-[11px] font-extrabold uppercase tracking-[0.25em] text-white/50">
-            tip
+          <p className="text-[11px] font-semibold tracking-[0.2em] text-white/50">
+            Tips
           </p>
           <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight text-white">
             {story.title}

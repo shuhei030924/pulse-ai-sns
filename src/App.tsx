@@ -212,7 +212,7 @@ export default function App() {
               onClick={() => setMobileRail(true)}
               className="rounded-xl px-2 py-1 text-xs font-bold text-lime hover:bg-lime/10"
             >
-              LIVE
+              いま
             </button>
             <button
               type="button"

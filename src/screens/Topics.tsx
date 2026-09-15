@@ -22,7 +22,7 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
     <div className="fade-in space-y-5">
       <header>
         <h1 className="font-display text-2xl font-extrabold text-ink">トピック</h1>
-        <p className="mt-1 text-sm text-muted">チャンネルで深く、ピンで大事な学びを残す。</p>
+        <p className="mt-1 text-sm text-muted">話題ごとに投稿をまとめています。大事なものはピン留めされます。</p>
       </header>
 
       <div className="hide-scrollbar flex gap-2 overflow-x-auto pb-1">
@@ -93,7 +93,7 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
         })}
         {topicPosts.length === 0 && (
           <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">
-            このトピックはまだ静か
+            このトピックにはまだ投稿がありません
           </div>
         )}
       </div>

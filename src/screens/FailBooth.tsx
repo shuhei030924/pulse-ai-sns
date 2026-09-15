@@ -10,7 +10,7 @@ interface FailBoothProps {
 }
 
 function formatRemain(sec: number) {
-  if (sec <= 0) return '消滅…'
+  if (sec <= 0) return '期限切れ'
   const h = Math.floor(sec / 3600)
   const m = Math.floor((sec % 3600) / 60)
   const s = sec % 60
@@ -60,7 +60,7 @@ function BoothCard({
         <span className="text-xs text-faint">{post.createdAt}</span>
         {post.revealed && (
           <span className="rounded-full bg-cyan/20 px-2 py-0.5 text-[10px] font-bold text-cyan">
-            REVEALED
+            延長中
           </span>
         )}
       </div>
@@ -100,20 +100,20 @@ export function FailBooth({ posts, onVibe, onCompose, onTick }: FailBoothProps) 
         <div className="pointer-events-none absolute -right-4 -top-4 text-8xl opacity-20">🔥</div>
         <div className="inline-flex items-center gap-1.5 text-pink">
           <Ghost className="h-4 w-4" />
-          <span className="text-[10px] font-extrabold tracking-[0.2em]">FAIL BOOTH</span>
+          <span className="text-[10px] font-extrabold tracking-[0.2em]">匿名</span>
         </div>
         <h1 className="mt-2 font-display text-2xl font-extrabold text-ink sm:text-3xl">
           失敗ブース
         </h1>
         <p className="mt-2 max-w-xl text-sm text-muted">
-          タイムリミット付きの匿名懺悔。カウントダウンが切れたら消える（または REVEAL）。通常フィードとは別空間。
+          匿名で失敗談を書く場所です。時間切れで消えます。「あるある」がたくさんつくと、少し残ることがあります。
         </p>
         <button
           type="button"
           onClick={onCompose}
           className="mt-4 rounded-2xl bg-pink px-4 py-2.5 text-sm font-extrabold text-void glow-pink"
         >
-          匿名で懺悔する
+          匿名で書く
         </button>
       </header>
 
@@ -124,8 +124,8 @@ export function FailBooth({ posts, onVibe, onCompose, onTick }: FailBoothProps) 
         {live.length === 0 && (
           <div className="rounded-3xl border border-dashed border-pink/30 p-12 text-center">
             <div className="text-4xl">👻</div>
-            <p className="mt-3 font-display text-lg font-bold">ブースは空っぽ</p>
-            <p className="mt-1 text-sm text-muted">最初の失敗談を投下して空気を変えよう</p>
+            <p className="mt-3 font-display text-lg font-bold">いま表示中の失敗談はありません</p>
+            <p className="mt-1 text-sm text-muted">よかったら1件書いてみてください</p>
           </div>
         )}
       </div>

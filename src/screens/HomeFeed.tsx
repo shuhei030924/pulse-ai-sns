@@ -43,13 +43,13 @@ export function HomeFeed({
           <div>
             <div className="inline-flex items-center gap-1.5 rounded-full bg-lime/15 px-2.5 py-1 text-[11px] font-extrabold text-lime ring-1 ring-lime/30">
               <Sparkles className="h-3 w-3" />
-              社内専用 · AIの熱量を可視化
+              社内専用
             </div>
             <h1 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-              今日の実験が、<span className="neon-lime">チームの脈</span>になる
+              社内で<span className="neon-lime">AIの使い方</span>を共有する場所
             </h1>
             <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
-              失敗ブースで懺悔して、Tipsを24hで回して、部署対抗でポイント稼ごう。仕事用なのに、ちょっとフェス感。
+              うまくいったやり方、失敗した話、今週のお題。同僚の投稿を見て、自分の仕事でも試せます。
             </p>
           </div>
           <button
@@ -57,7 +57,7 @@ export function HomeFeed({
             onClick={onCompose}
             className="rounded-2xl bg-lime px-4 py-2.5 text-sm font-extrabold text-void glow-lime transition hover:brightness-110"
           >
-            今すぐ投稿
+            投稿する
           </button>
         </div>
       </header>
@@ -99,9 +99,9 @@ export function HomeFeed({
         })}
         {visible.length === 0 && (
           <div className="rounded-3xl border border-dashed border-line bg-surface/50 p-12 text-center">
-            <div className="text-4xl">🪩</div>
-            <p className="mt-3 font-display text-lg font-bold text-ink">まだ静かだね</p>
-            <p className="mt-1 text-sm text-muted">最初の投稿でフロアを温めよう</p>
+            <div className="text-4xl">📝</div>
+            <p className="mt-3 font-display text-lg font-bold text-ink">この条件の投稿はまだないです</p>
+            <p className="mt-1 text-sm text-muted">よかったら最初の1件を書いてみてください</p>
           </div>
         )}
       </div>

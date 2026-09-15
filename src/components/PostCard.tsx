@@ -13,7 +13,7 @@ const typeStyles: Record<Post['type'], string> = {
 }
 
 const reactionMeta: { key: ReactionKey; label: string; emoji: string }[] = [
-  { key: 'fire', label: '熱い', emoji: '🔥' },
+  { key: 'fire', label: 'いいね', emoji: '🔥' },
   { key: 'useful', label: '使える', emoji: '⚡' },
   { key: 'wow', label: 'なるほど', emoji: '💫' },
 ]
@@ -74,7 +74,7 @@ export function PostCard({
             <time className="text-sm text-faint">{post.createdAt}</time>
             {post.pinned && (
               <span className="rounded-full bg-lime/20 px-2 py-0.5 text-[10px] font-extrabold tracking-wide text-lime">
-                PIN
+                ピン
               </span>
             )}
           </div>
@@ -108,7 +108,7 @@ export function PostCard({
         <div className="relative mt-3 rounded-2xl border border-dashed border-cyan/30 bg-cyan/5 p-3">
           <div className="mb-1 flex items-center gap-1.5 text-[10px] font-bold uppercase tracking-wider text-cyan">
             <Link2 className="h-3 w-3" />
-            prompt snippet
+            プロンプト
           </div>
           <p className="font-mono text-xs leading-relaxed text-ink-soft">{post.promptSnippet}</p>
         </div>
@@ -125,7 +125,7 @@ export function PostCard({
         ))}
       </div>
 
-      {/* 試したチェーン actions */}
+      {/* 試した人 */}
       {(post.promptSnippet || post.type === '学び' || post.type === '事例' || post.type === 'チャレンジ') &&
         onTry && (
           <div className="relative mt-4 flex flex-wrap gap-2">
@@ -135,7 +135,7 @@ export function PostCard({
               className="inline-flex items-center gap-1.5 rounded-full bg-cyan/15 px-3 py-1.5 text-xs font-bold text-cyan ring-1 ring-cyan/30 transition hover:bg-cyan hover:text-void"
             >
               {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
-              {copied ? 'コピーした！' : 'コピーして試す'}
+              {copied ? 'コピーしました' : 'コピーして試す'}
             </button>
             {!post.iTried ? (
               <button
@@ -143,7 +143,7 @@ export function PostCard({
                 onClick={() => setShowTry((v) => !v)}
                 className="inline-flex items-center gap-1.5 rounded-full bg-lime/15 px-3 py-1.5 text-xs font-bold text-lime ring-1 ring-lime/30 transition hover:bg-lime hover:text-void"
               >
-                試した → 結果を書く
+                試したので結果を書く
               </button>
             ) : (
               <span className="inline-flex items-center rounded-full bg-lime/20 px-3 py-1.5 text-xs font-bold text-lime">
@@ -158,7 +158,7 @@ export function PostCard({
           <input
             value={tryText}
             onChange={(e) => setTryText(e.target.value)}
-            placeholder="一行で結果を…"
+            placeholder="結果を一行で"
             className="flex-1 rounded-xl border border-line bg-line-soft px-3 py-2 text-sm outline-none ring-lime/40 focus:ring-2"
             onKeyDown={(e) => e.key === 'Enter' && submitTry()}
           />
@@ -175,7 +175,7 @@ export function PostCard({
       {post.tryChain.length > 0 && (
         <div className="relative mt-4 space-y-2 rounded-2xl border border-lime/25 bg-lime/5 p-3">
           <div className="text-[10px] font-extrabold uppercase tracking-widest text-lime">
-            試したチェーン · {post.tryChain.length}
+            試した人 · {post.tryChain.length}
           </div>
           {post.tryChain.map((t) => {
             const who = people.find((p) => p.id === t.authorId)

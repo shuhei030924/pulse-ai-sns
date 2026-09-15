@@ -29,8 +29,8 @@ export function SideNav({ active, onNavigate, onCompose, userInitials, userColor
         </div>
         <div>
           <div className="font-display text-xl font-extrabold tracking-tight text-ink">Pulse</div>
-          <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-lime">
-            work energy sns
+          <div className="text-[10px] font-semibold tracking-[0.12em] text-lime">
+            社内 · AI共有
           </div>
         </div>
       </div>
@@ -85,7 +85,7 @@ export function SideNav({ active, onNavigate, onCompose, userInitials, userColor
         </div>
         <div className="min-w-0">
           <div className="truncate text-sm font-semibold text-ink">{userName}</div>
-          <div className="text-xs text-lime">🔥 連続 12日</div>
+          <div className="text-xs text-lime">🔥 12日連続</div>
         </div>
       </div>
     </aside>

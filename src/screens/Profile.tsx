@@ -40,7 +40,7 @@ export function Profile({ posts, peopleById, savedIds, onReact, onTry, onToggleS
             </div>
             <div className="flex items-center gap-2 rounded-2xl bg-lime/15 px-3 py-2 text-lime ring-1 ring-lime/30">
               <Flame className="h-4 w-4" />
-              <span className="text-sm font-extrabold">連続 12日</span>
+              <span className="text-sm font-extrabold">12日連続で投稿</span>
             </div>
           </div>
           <p className="mt-4 max-w-2xl text-sm leading-relaxed text-ink-soft">{me.bio}</p>
@@ -94,7 +94,7 @@ export function Profile({ posts, peopleById, savedIds, onReact, onTry, onToggleS
           )
         })}
         {saved.length === 0 && (
-          <p className="text-sm text-muted">まだ保存なし。ブックマークで後で試そう。</p>
+          <p className="text-sm text-muted">保存した投稿はまだありません。後で読むものはブックマークできます。</p>
         )}
       </section>
     </div>
