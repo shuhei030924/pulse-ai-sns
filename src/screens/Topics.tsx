@@ -19,22 +19,22 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
   const rest = topicPosts.filter((p) => !p.pinned)
 
   return (
-    <div className="fade-in space-y-5">
-      <header>
-        <h1 className="font-display text-2xl font-extrabold text-ink">トピック</h1>
-        <p className="mt-1 text-sm text-muted">チャンネルで深く、ピンで大事な学びを残す。</p>
+    <div className="fade-in">
+      <header className="border-b border-line px-4 py-4">
+        <h1 className="text-xl font-semibold text-ink">トピック</h1>
+        <p className="mt-1 text-sm text-muted">話題ごとに投稿をまとめています。大事なものはピン留めされます。</p>
       </header>
 
-      <div className="hide-scrollbar flex gap-2 overflow-x-auto pb-1">
+      <div className="hide-scrollbar flex gap-0 overflow-x-auto border-b border-line">
         {topics.map((t) => (
           <button
             key={t.id}
             type="button"
             onClick={() => setActiveId(t.id)}
-            className={`flex shrink-0 items-center gap-2 rounded-2xl px-3.5 py-2 text-sm font-bold transition ${
+            className={`flex shrink-0 items-center gap-1.5 px-3.5 py-3 text-[13px] transition ${
               activeId === t.id
-                ? 'bg-lime text-void'
-                : 'bg-surface text-ink-soft ring-1 ring-line hover:ring-lime/50'
+                ? 'border-b-2 border-ink font-semibold text-ink'
+                : 'border-b-2 border-transparent text-muted hover:text-ink'
             }`}
           >
             <span>{t.icon}</span>
@@ -43,27 +43,19 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
         ))}
       </div>
 
-      <section className="rounded-3xl glass-strong p-5">
-        <div className="flex items-start gap-3">
-          <span
-            className="flex h-12 w-12 items-center justify-center rounded-2xl text-xl"
-            style={{ background: `${topic.color}22`, color: topic.color }}
-          >
-            {topic.icon}
-          </span>
-          <div>
-            <h2 className="font-display text-xl font-bold text-ink">{topic.name}</h2>
-            <p className="mt-1 text-sm text-muted">{topic.description}</p>
-            <p className="mt-2 text-xs text-faint">
-              {topic.members}人 · {topic.posts}投稿
-            </p>
-          </div>
-        </div>
+      <section className="border-b border-line px-4 py-4">
+        <h2 className="font-semibold text-ink">
+          {topic.icon} {topic.name}
+        </h2>
+        <p className="mt-1 text-sm text-muted">{topic.description}</p>
+        <p className="mt-2 text-[12px] text-faint">
+          {topic.members}人 · {topic.posts}投稿
+        </p>
       </section>
 
       {pinned.length > 0 && (
-        <div className="space-y-3">
-          <div className="flex items-center gap-1.5 text-xs font-bold text-lime">
+        <div className="divide-y divide-line border-b border-line">
+          <div className="flex items-center gap-1.5 px-4 py-2 text-[12px] text-muted">
             <Pin className="h-3.5 w-3.5" />
             ピン留め
           </div>
@@ -83,7 +75,7 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
         </div>
       )}
 
-      <div className="space-y-4">
+      <div className="divide-y divide-line">
         {rest.map((post) => {
           const author = peopleById[post.authorId]
           if (!author) return null
@@ -92,8 +84,8 @@ export function Topics({ posts, peopleById, onReact, onTry }: TopicsProps) {
           )
         })}
         {topicPosts.length === 0 && (
-          <div className="rounded-3xl border border-dashed border-line p-10 text-center text-sm text-muted">
-            このトピックはまだ静か
+          <div className="px-4 py-16 text-center text-sm text-muted">
+            このトピックにはまだ投稿がありません
           </div>
         )}
       </div>

@@ -9,16 +9,12 @@ interface StoriesRailProps {
 
 export function StoriesRail({ stories, onOpen }: StoriesRailProps) {
   return (
-    <section className="fade-in">
-      <div className="mb-2 flex items-baseline justify-between px-1">
-        <h2 className="font-display text-sm font-bold tracking-wide text-ink">
-          24h Tips
-        </h2>
-        <span className="text-[10px] font-semibold uppercase tracking-widest text-cyan">
-          ephemeral
-        </span>
+    <section className="border-b border-line px-3 pb-3 pt-3 sm:px-4">
+      <div className="mb-3 flex items-baseline justify-between px-1">
+        <h2 className="text-[13px] font-semibold text-ink">今日のTips</h2>
+        <span className="text-[11px] text-faint">24時間で消えます</span>
       </div>
-      <div className="hide-scrollbar flex gap-3 overflow-x-auto pb-2">
+      <div className="hide-scrollbar flex gap-4 overflow-x-auto pb-1">
         {stories.map((story, i) => {
           const author = people.find((p) => p.id === story.authorId)
           if (!author) return null
@@ -27,16 +23,16 @@ export function StoriesRail({ stories, onOpen }: StoriesRailProps) {
               key={story.id}
               type="button"
               onClick={() => onOpen(i)}
-              className="group flex w-[72px] shrink-0 flex-col items-center gap-1.5"
+              className="group flex w-[76px] shrink-0 flex-col items-center gap-1.5"
             >
               <div
-                className={`rounded-full p-[2.5px] ${story.viewed ? 'story-ring-seen' : 'story-ring'}`}
+                className={`rounded-full p-[3px] ${story.viewed ? 'story-ring-seen' : 'story-ring'}`}
               >
-                <div className="rounded-full bg-canvas p-[2px]">
-                  <Avatar initials={author.initials} color={author.color} size="md" />
+                <div className="rounded-full bg-surface p-[2px]">
+                  <Avatar initials={author.initials} color={author.color} size="story" />
                 </div>
               </div>
-              <span className="w-full truncate text-center text-[10px] font-medium text-muted group-hover:text-ink">
+              <span className="w-full truncate text-center text-[11px] text-ink-soft group-hover:text-ink">
                 {story.title}
               </span>
             </button>
