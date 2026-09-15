@@ -103,15 +103,15 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
   }
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 p-4 pt-[6vh] backdrop-blur-md fade-in">
+    <div className="fixed inset-0 z-50 flex items-start justify-center bg-ink/40 p-4 pt-[8vh] fade-in">
       <div className="absolute inset-0" onClick={onClose} aria-hidden />
       <form
         onSubmit={handleSubmit}
-        className="relative slide-up w-full max-w-xl overflow-hidden rounded-3xl border border-line bg-white shadow-2xl"
+        className="relative slide-up w-full max-w-xl overflow-hidden rounded-2xl border border-line bg-white shadow-lg"
       >
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <div>
-            <h2 className="font-display text-lg font-extrabold text-ink">
+            <h2 className="text-lg font-semibold text-ink">
               {isBooth ? '失敗ブースに書く' : '投稿を書く'}
             </h2>
             <p className="text-xs text-muted">
@@ -132,11 +132,9 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                   key={t.type}
                   type="button"
                   onClick={() => setType(t.type)}
-                  className={`rounded-full px-3 py-1.5 text-xs font-bold transition ${
+                  className={`rounded-full px-3 py-1.5 text-xs font-medium transition ${
                     type === t.type
-                      ? t.type === '失敗ブース'
-                        ? 'bg-pink text-void glow-pink'
-                        : 'bg-lime text-void glow-lime'
+                      ? 'bg-ink text-white'
                       : 'bg-line-soft text-muted hover:text-ink'
                   }`}
                 >
@@ -155,7 +153,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 placeholder="何をしたか、一言で"
-                className="w-full rounded-xl border border-line bg-line-soft px-3 py-2.5 text-sm outline-none ring-lime/40 transition focus:ring-2"
+                className="w-full rounded-xl border border-line bg-surface px-3 py-2.5 text-sm outline-none focus:border-ink"
                 required={!isBooth}
               />
             </div>
@@ -174,7 +172,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                   : '手順、プロンプト、結果などを'
               }
               rows={5}
-              className="w-full resize-none rounded-xl border border-line bg-line-soft px-3 py-2.5 text-sm outline-none ring-lime/40 transition focus:ring-2"
+              className="w-full resize-none rounded-xl border border-line bg-surface px-3 py-2.5 text-sm outline-none focus:border-ink"
               required
             />
           </div>
@@ -188,8 +186,8 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                     key={t}
                     type="button"
                     onClick={() => setTool(t)}
-                    className={`rounded-lg px-3 py-1.5 text-xs font-bold ${
-                      tool === t ? 'bg-pink text-void' : 'bg-line-soft text-muted'
+                    className={`rounded-full px-3 py-1.5 text-xs font-medium ${
+                      tool === t ? 'bg-ink text-white' : 'bg-line-soft text-muted'
                     }`}
                   >
                     {t}
@@ -208,7 +206,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                   onChange={(e) => setPrompt(e.target.value)}
                   placeholder="他の人がコピーして試せる短いプロンプト"
                   rows={2}
-                  className="w-full resize-none rounded-xl border border-line bg-line-soft px-3 py-2.5 font-mono text-xs outline-none focus:ring-2 focus:ring-cyan/40"
+                  className="w-full resize-none rounded-xl border border-line bg-surface px-3 py-2.5 font-mono text-xs outline-none focus:border-ink"
                 />
               </div>
 
@@ -220,7 +218,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                       key={t}
                       type="button"
                       onClick={() => setTags(tags.filter((x) => x !== t))}
-                      className="rounded-md bg-lime/15 px-2 py-0.5 text-xs font-medium text-lime"
+                      className="rounded-md bg-line-soft px-2 py-0.5 text-xs font-medium text-ink"
                     >
                       #{t} ×
                     </button>
@@ -236,7 +234,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                     }
                   }}
                   placeholder="タグを入力して Enter"
-                  className="w-full rounded-xl border border-line bg-line-soft px-3 py-2 text-sm outline-none focus:ring-2 focus:ring-lime/40"
+                  className="w-full rounded-xl border border-line bg-surface px-3 py-2 text-sm outline-none focus:border-ink"
                 />
                 <div className="mt-2 flex flex-wrap gap-1.5">
                   {tagSuggestions
@@ -246,7 +244,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                         key={t}
                         type="button"
                         onClick={() => addTag(t)}
-                        className="rounded-md bg-line-soft px-2 py-0.5 text-xs text-muted hover:bg-lime/15 hover:text-lime"
+                        className="rounded-md px-2 py-0.5 text-xs text-muted hover:bg-line-soft hover:text-ink"
                       >
                         + {t}
                       </button>
@@ -263,7 +261,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
                       type="button"
                       onClick={() => setAudience(a)}
                       className={`rounded-lg px-3 py-1.5 text-xs font-bold transition ${
-                        audience === a ? 'bg-cyan text-void' : 'bg-line-soft text-muted hover:text-ink'
+                        audience === a ? 'bg-ink text-white' : 'bg-line-soft text-muted hover:text-ink'
                       }`}
                     >
                       {a}
@@ -285,11 +283,7 @@ export function Composer({ open, onClose, onSubmit, onFailBooth, initialTemplate
           </button>
           <button
             type="submit"
-            className={`rounded-xl px-5 py-2 text-sm font-extrabold text-void transition ${
-              isBooth
-                ? 'bg-pink shadow-[0_0_24px_-6px_rgba(255,45,149,0.7)] hover:brightness-110'
-                : 'bg-lime shadow-[0_0_24px_-6px_rgba(200,255,0,0.7)] hover:brightness-110'
-            }`}
+            className="rounded-full bg-ink px-5 py-2 text-sm font-semibold text-white hover:bg-ink-soft"
           >
             {isBooth ? '匿名で投稿' : '投稿する'}
           </button>

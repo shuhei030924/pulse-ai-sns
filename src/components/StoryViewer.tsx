@@ -73,7 +73,7 @@ export function StoryViewer({ stories, index, onClose, onViewed, onIndex }: Stor
           <p className="text-[11px] font-semibold tracking-[0.2em] text-white/50">
             Tips
           </p>
-          <h2 className="mt-2 font-display text-3xl font-extrabold leading-tight text-white">
+          <h2 className="mt-2 text-3xl font-semibold leading-tight text-white">
             {story.title}
           </h2>
           <p className="mt-5 text-base leading-relaxed text-white/85">{story.body}</p>

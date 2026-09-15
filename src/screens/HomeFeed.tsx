@@ -1,7 +1,8 @@
 import type { Person, Post, ReactionKey, Story } from '../types'
 import { PostCard } from '../components/PostCard'
 import { StoriesRail } from '../components/StoriesRail'
-import { Sparkles } from 'lucide-react'
+import { Avatar } from '../components/Avatar'
+import { CURRENT_USER_ID, people } from '../data/mock'
 
 const filters = ['すべて', '学び', '事例', '質問', '失敗', 'チャレンジ'] as const
 
@@ -33,47 +34,32 @@ export function HomeFeed({
   onOpenStory,
 }: HomeFeedProps) {
   const visible = filter === 'すべて' ? posts : posts.filter((p) => p.type === filter)
+  const me = people.find((p) => p.id === CURRENT_USER_ID)!
 
   return (
-    <div className="fade-in space-y-5">
-      <header className="relative overflow-hidden rounded-3xl border border-line bg-gradient-to-br from-white via-lime/10 to-pink/15 p-6 shadow-[0_8px_32px_-12px_rgba(24,24,27,0.12)]">
-        <div className="pointer-events-none absolute -right-8 top-0 h-40 w-40 rounded-full bg-lime/20 blur-3xl" />
-        <div className="pointer-events-none absolute bottom-0 left-1/3 h-24 w-24 rounded-full bg-cyan/15 blur-2xl" />
-        <div className="relative flex flex-wrap items-start justify-between gap-4">
-          <div>
-            <div className="inline-flex items-center gap-1.5 rounded-full bg-lime/15 px-2.5 py-1 text-[11px] font-extrabold text-lime ring-1 ring-lime/30">
-              <Sparkles className="h-3 w-3" />
-              社内専用
-            </div>
-            <h1 className="mt-3 font-display text-2xl font-extrabold tracking-tight text-ink sm:text-3xl">
-              社内で<span className="neon-lime">AIの使い方</span>を共有する場所
-            </h1>
-            <p className="mt-2 max-w-lg text-sm leading-relaxed text-muted">
-              うまくいったやり方、失敗した話、今週のお題。同僚の投稿を見て、自分の仕事でも試せます。
-            </p>
-          </div>
-          <button
-            type="button"
-            onClick={onCompose}
-            className="rounded-2xl bg-lime px-4 py-2.5 text-sm font-extrabold text-void glow-lime transition hover:brightness-110"
-          >
-            投稿する
-          </button>
-        </div>
-      </header>
-
+    <div className="fade-in">
       <StoriesRail stories={stories} onOpen={onOpenStory} />
 
-      <div className="flex flex-wrap gap-1.5">
+      <button
+        type="button"
+        onClick={onCompose}
+        className="flex w-full items-center gap-3 border-b border-line px-4 py-3 text-left hover:bg-line-soft/60"
+      >
+        <Avatar initials={me.initials} color={me.color} />
+        <span className="flex-1 text-[15px] text-muted">うまくいったこと、失敗したこと…</span>
+        <span className="text-[13px] font-semibold text-accent">投稿する</span>
+      </button>
+
+      <div className="hide-scrollbar flex gap-0 overflow-x-auto border-b border-line">
         {filters.map((f) => (
           <button
             key={f}
             type="button"
             onClick={() => onFilter(f)}
-            className={`rounded-full px-3.5 py-1.5 text-xs font-bold transition ${
+            className={`shrink-0 px-3.5 py-3 text-[13px] transition ${
               filter === f
-                ? 'bg-lime text-void'
-                : 'bg-surface text-muted ring-1 ring-line hover:text-ink hover:ring-lime/40'
+                ? 'border-b-2 border-ink font-semibold text-ink'
+                : 'border-b-2 border-transparent text-muted hover:text-ink'
             }`}
           >
             {f}
@@ -81,7 +67,7 @@ export function HomeFeed({
         ))}
       </div>
 
-      <div className="space-y-4">
+      <div className="divide-y divide-line">
         {visible.map((post) => {
           const author = peopleById[post.authorId]
           if (!author) return null
@@ -98,9 +84,8 @@ export function HomeFeed({
           )
         })}
         {visible.length === 0 && (
-          <div className="rounded-3xl border border-dashed border-line bg-surface/50 p-12 text-center">
-            <div className="text-4xl">📝</div>
-            <p className="mt-3 font-display text-lg font-bold text-ink">この条件の投稿はまだないです</p>
+          <div className="px-4 py-16 text-center">
+            <p className="text-[15px] font-medium text-ink">この条件の投稿はまだないです</p>
             <p className="mt-1 text-sm text-muted">よかったら最初の1件を書いてみてください</p>
           </div>
         )}

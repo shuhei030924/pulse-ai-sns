@@ -180,9 +180,9 @@ export default function App() {
   }
 
   return (
-    <div className="min-h-svh">
-      <div className="mx-auto flex min-h-svh max-w-[1440px]">
-        <div className="sticky top-0 hidden h-svh w-56 shrink-0 lg:block xl:w-60">
+    <div className="min-h-svh bg-canvas">
+      <div className="mx-auto flex min-h-svh max-w-[1180px]">
+        <div className="sticky top-0 hidden h-svh w-[220px] shrink-0 lg:block">
           <SideNav
             active={tab}
             onNavigate={navigate}
@@ -193,38 +193,39 @@ export default function App() {
           />
         </div>
 
-        <div className="flex min-w-0 flex-1 flex-col">
-          <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-line/80 bg-canvas/85 px-4 py-3 backdrop-blur-xl lg:hidden">
+        <div className="flex min-w-0 flex-1 justify-center">
+          <div className="flex min-h-svh w-full max-w-[680px] flex-col border-x border-line bg-surface">
+            <header className="sticky top-0 z-20 flex items-center gap-3 border-b border-line bg-surface/90 px-3 py-2.5 backdrop-blur-md lg:hidden">
             <button
               type="button"
               onClick={() => setMobileNav(true)}
-              className="rounded-xl p-2 text-ink hover:bg-line-soft"
+              className="rounded-full p-2 text-ink hover:bg-line-soft"
               aria-label="メニュー"
             >
               <Menu className="h-5 w-5" />
             </button>
             <div className="flex-1">
-              <div className="font-display text-sm font-extrabold text-ink">Pulse</div>
+              <div className="text-sm font-semibold text-ink">Pulse</div>
               <div className="text-[11px] text-muted">{titles[tab]}</div>
             </div>
             <button
               type="button"
               onClick={() => setMobileRail(true)}
-              className="rounded-xl px-2 py-1 text-xs font-bold text-lime hover:bg-lime/10"
+              className="rounded-full px-2.5 py-1 text-xs font-medium text-muted hover:bg-line-soft"
             >
               いま
             </button>
             <button
               type="button"
               onClick={() => openComposer()}
-              className="rounded-xl bg-lime p-2 text-void"
+              className="rounded-full bg-ink p-2 text-white"
               aria-label="投稿"
             >
               <PenLine className="h-4 w-4" />
             </button>
-          </header>
+            </header>
 
-          <main className="flex-1 px-4 py-5 sm:px-6 lg:px-8">
+            <main className="flex-1">
             {tab === 'home' && (
               <HomeFeed
                 posts={posts}
@@ -271,9 +272,10 @@ export default function App() {
               />
             )}
           </main>
+          </div>
         </div>
 
-        <div className="sticky top-0 hidden h-svh w-72 shrink-0 xl:block 2xl:w-80">
+        <div className="sticky top-0 hidden h-svh w-[240px] shrink-0 xl:block">
           <SideRail
             presence={presence}
             deptScores={deptScores}
@@ -285,7 +287,7 @@ export default function App() {
       {mobileNav && (
         <div className="fixed inset-0 z-40 lg:hidden">
           <div className="absolute inset-0 bg-ink/30" onClick={() => setMobileNav(false)} />
-          <div className="absolute inset-y-0 left-0 w-64 slide-up bg-white shadow-xl">
+          <div className="absolute inset-y-0 left-0 w-64 slide-up border-r border-line bg-white">
             <SideNav
               active={tab}
               onNavigate={navigate}
@@ -304,7 +306,7 @@ export default function App() {
       {mobileRail && (
         <div className="fixed inset-0 z-40 xl:hidden">
           <div className="absolute inset-0 bg-ink/30" onClick={() => setMobileRail(false)} />
-          <div className="absolute inset-y-0 right-0 w-80 max-w-[90vw] overflow-y-auto bg-white p-4 shadow-xl slide-up">
+          <div className="absolute inset-y-0 right-0 w-80 max-w-[90vw] overflow-y-auto border-l border-line bg-white p-4 slide-up">
             <div className="mb-2 flex justify-end">
               <button
                 type="button"

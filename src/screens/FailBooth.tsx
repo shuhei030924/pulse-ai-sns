@@ -47,43 +47,30 @@ function BoothCard({
   const urgent = remain < 600
 
   return (
-    <article className="slide-up relative overflow-hidden rounded-3xl border border-pink/25 bg-gradient-to-br from-pink/10 via-white to-pink/5 p-5 shadow-[0_8px_28px_-12px_rgba(255,45,149,0.2)]">
-      <div className="pointer-events-none absolute -right-6 top-0 text-7xl opacity-10">👻</div>
-      <div className="flex flex-wrap items-center gap-2">
-        <span className="inline-flex items-center gap-1 rounded-full bg-pink/20 px-2.5 py-0.5 text-xs font-bold text-pink">
-          <Ghost className="h-3 w-3" />
+    <article className="px-4 py-4">
+      <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-[13px]">
+        <span className="inline-flex items-center gap-1 font-medium text-ink">
+          <Ghost className="h-3.5 w-3.5 text-pink" />
           {post.alias}
         </span>
-        <span className="rounded-md bg-line-soft px-2 py-0.5 text-[10px] font-bold text-muted">
-          {post.tool}
-        </span>
-        <span className="text-xs text-faint">{post.createdAt}</span>
-        {post.revealed && (
-          <span className="rounded-full bg-cyan/20 px-2 py-0.5 text-[10px] font-bold text-cyan">
-            延長中
-          </span>
-        )}
+        <span className="text-muted">{post.tool}</span>
+        <span className="text-faint">{post.createdAt}</span>
+        {post.revealed && <span className="text-[12px] text-muted">延長中</span>}
       </div>
-      <p className="mt-3 text-[15px] leading-relaxed text-ink">{post.body}</p>
-      <div className="mt-4 flex flex-wrap items-center gap-3">
-        <div
-          className={`inline-flex items-center gap-1.5 rounded-full bg-line-soft px-3 py-1.5 text-xs font-bold tabular-nums ${
-            urgent ? 'countdown-urgent' : 'text-lime'
-          }`}
-        >
+      <p className="mt-2 text-[15px] leading-[1.65] text-ink">{post.body}</p>
+      <div className="mt-3 flex flex-wrap items-center gap-3 text-[13px] text-muted">
+        <div className={`inline-flex items-center gap-1 tabular-nums ${urgent ? 'countdown-urgent' : ''}`}>
           <Timer className="h-3.5 w-3.5" />
           {formatRemain(remain)}
         </div>
         <button
           type="button"
           onClick={() => onVibe(post.id)}
-          className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold transition ${
-            post.myVibe
-              ? 'bg-pink text-void react-pop glow-pink'
-              : 'bg-line-soft text-muted hover:bg-pink/20 hover:text-pink'
+          className={`inline-flex items-center gap-1 rounded-full px-2 py-1 transition hover:bg-line-soft ${
+            post.myVibe ? 'text-pink' : 'text-muted'
           }`}
         >
-          <Heart className={`h-3.5 w-3.5 ${post.myVibe ? 'fill-current' : ''}`} />
+          <Heart className={`h-4 w-4 ${post.myVibe ? 'fill-current' : ''}`} />
           あるある {post.vibes}
         </button>
       </div>
@@ -95,36 +82,32 @@ export function FailBooth({ posts, onVibe, onCompose, onTick }: FailBoothProps) 
   const live = posts.filter((p) => p.expiresInSec > 0)
 
   return (
-    <div className="fade-in space-y-5">
-      <header className="relative overflow-hidden rounded-3xl border border-pink/30 bg-gradient-to-br from-pink/20 via-white to-cyan/10 p-6 shadow-[0_8px_32px_-12px_rgba(255,45,149,0.25)]">
-        <div className="pointer-events-none absolute -right-4 -top-4 text-8xl opacity-20">🔥</div>
-        <div className="inline-flex items-center gap-1.5 text-pink">
-          <Ghost className="h-4 w-4" />
-          <span className="text-[10px] font-extrabold tracking-[0.2em]">匿名</span>
+    <div className="fade-in">
+      <header className="border-b border-line px-4 py-4">
+        <div className="flex items-center gap-1.5 text-[12px] text-muted">
+          <Ghost className="h-3.5 w-3.5" />
+          匿名
         </div>
-        <h1 className="mt-2 font-display text-2xl font-extrabold text-ink sm:text-3xl">
-          失敗ブース
-        </h1>
-        <p className="mt-2 max-w-xl text-sm text-muted">
+        <h1 className="mt-1 text-xl font-semibold text-ink">失敗ブース</h1>
+        <p className="mt-1.5 text-sm leading-relaxed text-muted">
           匿名で失敗談を書く場所です。時間切れで消えます。「あるある」がたくさんつくと、少し残ることがあります。
         </p>
         <button
           type="button"
           onClick={onCompose}
-          className="mt-4 rounded-2xl bg-pink px-4 py-2.5 text-sm font-extrabold text-void glow-pink"
+          className="mt-3 rounded-full bg-ink px-4 py-2 text-sm font-semibold text-white"
         >
           匿名で書く
         </button>
       </header>
 
-      <div className="space-y-4">
+      <div className="divide-y divide-line">
         {live.map((p) => (
           <BoothCard key={p.id} post={p} onVibe={onVibe} onTick={onTick} />
         ))}
         {live.length === 0 && (
-          <div className="rounded-3xl border border-dashed border-pink/30 p-12 text-center">
-            <div className="text-4xl">👻</div>
-            <p className="mt-3 font-display text-lg font-bold">いま表示中の失敗談はありません</p>
+          <div className="px-4 py-16 text-center">
+            <p className="text-[15px] font-medium">いま表示中の失敗談はありません</p>
             <p className="mt-1 text-sm text-muted">よかったら1件書いてみてください</p>
           </div>
         )}
