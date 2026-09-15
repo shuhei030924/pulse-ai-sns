@@ -26,7 +26,7 @@ export function StoriesRail({ stories, onOpen }: StoriesRailProps) {
               className="group flex w-[76px] shrink-0 flex-col items-center gap-1.5"
             >
               <div
-                className={`rounded-full p-[2.5px] ${story.viewed ? 'story-ring-seen' : 'story-ring'}`}
+                className={`rounded-full p-[3px] ${story.viewed ? 'story-ring-seen' : 'story-ring'}`}
               >
                 <div className="rounded-full bg-surface p-[2px]">
                   <Avatar initials={author.initials} color={author.color} size="story" />
